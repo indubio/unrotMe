@@ -8,8 +8,6 @@ PROGRAM unrotMe
 
   CALL GET_COORDS(lat_rot_in,lon_rot_in,lat_pol_in,lon_pol_in)
 
-  lat_pol_in = 89.208767
-  lon_pol_in = 179.050450D0
   phirot2phi_out = phirot2phi(lat_rot_in,lon_rot_in,lat_pol_in,lon_pol_in,0.0D0)
   rlarot2rla_out = rlarot2rla(lat_rot_in,lon_rot_in,lat_pol_in,lon_pol_in,0.0D0)
   phirot2phi_deg = INT(phirot2phi_out)
@@ -71,7 +69,7 @@ SUBROUTINE GET_COORDS(lat,lon,pollat,pollon)
         cycle
      end if
   END DO
-  WRITE(*,'(A)')'Enter LONGIUDE of the point in ROTATED system'
+  WRITE(*,'(A)')'Enter LONGITUDE of the point in ROTATED system'
   DO
      WRITE(*,'(A$)')'Degrees     (DD) : '
      READ (*,*,iostat=io_err) lon_deg
@@ -112,7 +110,7 @@ SUBROUTINE GET_COORDS(lat,lon,pollat,pollon)
         cycle
      end if
   END DO
-  WRITE(*,'(A)')'Enter LONGIUDE of the rotated North Pole in UNROTATED system'
+  WRITE(*,'(A)')'Enter LONGITUDE of the rotated North Pole in UNROTATED system'
   DO
      WRITE(*,'(A$)')'Degrees     (DD) : '
      READ (*,*,iostat=io_err) pol_lon_deg
@@ -168,9 +166,6 @@ DOUBLE PRECISION FUNCTION  phirot2phi ( phirot, rlarot, polphi, pollam, polgam )
 
   DOUBLE PRECISION , INTENT (IN)      ::        &
        polgam      ! angle between the north poles of the systems
-
-  DOUBLE PRECISION                    ::        &
-       phirot2phi  ! latitude in the geographical system
 
   DOUBLE PRECISION                    ::        &
        zsinpol, zcospol, zphis, zrlas, zarg, zgam
